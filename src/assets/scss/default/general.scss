@@ -1,0 +1,22 @@
+body {
+  font-family: $font;
+  padding: 85px;
+}
+
+html {
+  background-color: $color-light-blue;
+}
+
+#app {
+  border-radius: 20px;
+  background-color: $white;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  padding: 0 60px;
+}
