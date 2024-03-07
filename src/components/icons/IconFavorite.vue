@@ -1,3 +1,5 @@
+<script setup></script>
+
 <template>
   <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path

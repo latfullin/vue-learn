@@ -16,6 +16,7 @@ const test = [1, 2, 3, 4, 5]
     grid-template-columns: repeat(4, 1fr);
     gap: 52px 40px;
     padding-top: 40px;
+    padding-bottom: 20px;
   }
 }
 </style>
