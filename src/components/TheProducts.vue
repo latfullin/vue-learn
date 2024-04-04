@@ -6,7 +6,6 @@ import ProductCards from '@components/product/ProductCards.vue'
   <div class="product">
     <div class="product__title">Все кроссовки</div>
   </div>
-
   <ProductCards />
 </template>
 

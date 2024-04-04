@@ -1,19 +1,37 @@
+<script setup lang="ts">
+import { useBasketStore } from '@stores/basket'
+
+const { addProduct } = useBasketStore()
+
+const props = defineProps<{
+  id: number
+  title: string
+  price: object
+  image: string
+}>()
+
+const productInBasket = true
+</script>
+
 <template>
   <div class="product__card">
     <div class="product__card-wrapper">
       <div class="product__card-head">
-        <img src="@img/product-1.png" alt="" />
+        <img :src="image" alt="" />
       </div>
 
       <div class="product__card-body">Мужские Кроссовки Nike Blazer Mid Suede</div>
       <div class="product__card-footer">
         <div class="product__card-price">
           <span class="product__card-price-title">Цена:</span>
-          <span class="product__card-price-value">12 999 руб.</span>
+          <span class="product__card-price-value">{{ price }} руб.</span>
         </div>
         <div class="product__card-add-product">
-          <div class="border">
+          <div class="border" v-if="productInBasket" @click="() => addProduct(id)">
             <span> + </span>
+          </div>
+          <div class="success" v-else>
+            <img src="@img/product-in-basket.svg" alt="" />
           </div>
         </div>
       </div>
@@ -32,10 +50,28 @@
   border: 1px solid #f2f2f2;
   color: #d3d3d3;
   cursor: pointer;
+  transition: box-shadow 0.3s;
   background: transparent;
 
   &_active {
     background: linear-gradient(180deg, #89f09c 0%, #3cc755 100%);
+  }
+}
+
+.success {
+  position: relative;
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #89f09c 0%, #3cc755 100%);
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -44,12 +80,7 @@
     padding: 20px 20px 34px;
     border: 1px solid #f3f3f3;
     border-radius: 40px;
-    box-shadow: 0 0 #f3f3f3;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: 1px 1px 2px 5px #f3f3f3ab;
-    }
+    @extend %default-box-shadow;
   }
 
   &__card-price {

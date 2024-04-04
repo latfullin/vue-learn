@@ -51,11 +51,3 @@
     @content;
   }
 }
-
-@mixin svgStyles($src) {
-  min-width: 20px;
-  min-height: 20px;
-  background-color: $color-primary;
-  mask: url($src) center / contain no-repeat;
-  @content;
-}
