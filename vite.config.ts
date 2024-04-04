@@ -17,6 +17,7 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@img': fileURLToPath(new URL('./src/assets/img', import.meta.url)),
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@stores': fileURLToPath(new URL('./src/stores', import.meta.url)),
     }
   },
     css: {
@@ -24,6 +25,7 @@ export default defineConfig({
       scss: {
         additionalData: `
           @import "@/assets/scss/default/variables.scss";
+          @import "@/assets/scss/default/ui-mixins.scss";
         `,
       },
     },
