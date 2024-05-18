@@ -1,6 +1,7 @@
 body {
-  font-family: $font;
-  padding: 85px;
+  // position: relative;
+  // font-family: $font;
+  // padding: 85px;
 }
 
 html {
@@ -10,6 +11,9 @@ html {
 #app {
   border-radius: 20px;
   background-color: $white;
+  position: relative;
+  font-family: $font;
+  margin: 85px;
 }
 
 img {

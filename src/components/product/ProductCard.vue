@@ -2,6 +2,8 @@
 import { useBasketStore } from '@stores/basket'
 import { ref, watch } from 'vue'
 import IconFavorite from '../icons/IconFavorite.vue'
+import { onMounted } from 'vue'
+
 const { addProduct, basket, removeProduct } = useBasketStore()
 
 const props = defineProps<{
@@ -17,13 +19,16 @@ interface IBasket {
   id: number
 }
 
-watch(basket, (e) => {
-  if (e.find((element: IBasket) => element.id === props.id)) {
+const checkAddInBasket = (): void => {
+  if (basket.find((element: IBasket) => element.id === props.id)) {
     productInBasket.value = false
   } else {
     productInBasket.value = true
   }
-})
+}
+
+watch(basket, checkAddInBasket)
+onMounted(() => checkAddInBasket())
 </script>
 
 <template>
