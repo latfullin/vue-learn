@@ -1,18 +1,16 @@
 <script setup lang="ts">
-import { emit } from 'vue'
-const value = defineModel('value')
+const valueInput = defineModel('input')
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps<{
-  value: String
-  placeholder: String
+  placeholder: string
 }>()
 </script>
 
 <template>
   <label>
     <slot name="before"></slot>
-    <input :placeholder="placeholder" type="text" :value="value" v-model="value" />
+    <input :placeholder="placeholder" type="text" v-model="valueInput" />
     <slot name="after"></slot>
   </label>
 </template>

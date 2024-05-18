@@ -3,15 +3,17 @@ import { ref, type Ref } from 'vue'
 import IconSearch from '@components/icons/IconSearch.vue'
 import ProductCards from '@components/product/ProductCards.vue'
 import Input from '@components/UI/Input.vue'
+import { useProductStore } from '@/stores/products'
+import { storeToRefs } from 'pinia'
 
-const search: Ref<string> = ref('')
+const { search } = storeToRefs(useProductStore())
 </script>
 
 <template>
   <div class="product">
     <div class="product__head">
       <div class="product__title">Все кроссовки</div>
-      <Input v-model:value="search" placeholder="Поиск" :value="search">
+      <Input v-model:input="search" placeholder="Поиск">
         <template v-slot:before>
           <IconSearch class="icon-search" />
         </template>
