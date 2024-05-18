@@ -47,7 +47,7 @@ watch(basket, (e) => {
           <button
             class="product__card-increment"
             v-if="productInBasket"
-            @click="() => addProduct(id)"
+            @click="() => addProduct(id, price)"
           >
             <span> + </span>
           </button>

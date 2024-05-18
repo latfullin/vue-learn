@@ -1,70 +1,20 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
 import ProductCard from '@components/product/ProductCard.vue'
 import ProductSkelet from '@components/product/ProductSkelet.vue'
+import { useProductStore } from '@/stores/products'
+import { storeToRefs } from 'pinia'
 
-const loader: Ref<boolean> = ref(true)
+const { products, loader } = storeToRefs(useProductStore())
 
 setTimeout(() => {
   loader.value = false
 }, 1000)
-
-const test = [
-  {
-    id: 1,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 2,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 3,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 4,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 5,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 6,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 7,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  },
-  {
-    id: 8,
-    title: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 321123,
-    image: '@img/product-1.png'
-  }
-]
 </script>
 
 <template>
   <div class="product__items">
     <ProductCard
-      v-for="item in test"
+      v-for="item in products"
       :image="item.image"
       :price="item.price"
       :id="item.id"
@@ -79,6 +29,7 @@ const test = [
   &__items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    position: relative;
     gap: 52px 40px;
     padding-top: 40px;
     padding-bottom: 20px;

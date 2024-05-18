@@ -1,8 +1,5 @@
 <script setup>
 import IconProfile from '@components/icons/IconProfile.vue'
-import { ref } from 'vue'
-
-const total = ref(0)
 </script>
 
 <template>

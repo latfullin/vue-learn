@@ -22,11 +22,13 @@ import HeaderNavigationProfile from '@components/Header/HeaderNavigationProfile.
 .navigation {
   &__items {
     display: flex;
+    align-items: center;
     column-gap: 32px;
   }
 
   &__item {
     display: flex;
+    align-items: center;
     column-gap: 10px;
     color: #5c5c5c;
     text-decoration: none;
