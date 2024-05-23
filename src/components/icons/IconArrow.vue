@@ -16,3 +16,5 @@
     />
   </svg>
 </template>
+
+<style lang="scss"></style>
