@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { ref } from 'vue'
 
 const backdrop = ref(Node)
+
 defineProps<{
   show: boolean
 }>()
@@ -12,7 +14,7 @@ defineExpose({
 </script>
 
 <template>
-  <span :class="[{ backdrop__show: show }, 'backdrop']" ref="backdrop"> </span>
+  <span :class="[{ backdrop__show: show }, 'backdrop']" ref="backdrop"></span>
 </template>
 
 <style lang="scss">

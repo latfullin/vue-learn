@@ -3,18 +3,16 @@ import { watch } from 'vue'
 import { useStateStore } from '@/stores/state'
 import { storeToRefs } from 'pinia'
 import TheBackdrop from '@components/TheBackdrop.vue'
-import { ref, type Ref } from 'vue'
-import TheBasket from './TheBasket.vue'
+import { ref } from 'vue'
 
 const { openSidebar } = storeToRefs(useStateStore())
+const backdrop = ref(null)
 
-const backdrop: Ref = ref(null)
-
-const open = (event: Event): void => {
+const open = (event): void => {
   window.addEventListener('click', close)
 }
 
-const close = (event: Event): void => {
+const close = (event): void => {
   if (event.target == backdrop.value.backdrop) {
     openSidebar.value = false
     window.removeEventListener('click', open)
@@ -26,7 +24,7 @@ watch(openSidebar, open)
 
 <template>
   <div :class="[{ sidebar__show: openSidebar }, 'sidebar']">
-    <TheBasket />
+    {{ openSidebar }}
   </div>
   <TheBackdrop :show="openSidebar" ref="backdrop" />
 </template>
@@ -42,7 +40,7 @@ watch(openSidebar, open)
   opacity: 0;
   transition:
     opacity 0.3s,
-    right 0.5s;
+    right 0.3s;
 
   &__show {
     right: 0;

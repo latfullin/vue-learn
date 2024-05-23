@@ -1,0 +1,23 @@
+version: '3.8'
+
+networks:
+  default: 
+    name: telegram_chat
+
+services:
+  nginx: 
+    container_name: vue-learn-nginx
+    build: ./docker/nginx/
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html
+      - ./logs/nginx:/usr/share/nginx/log/
+
+  node:
+      container_name: vue-learn-node
+      build: ./docker/node/
+      ports:
+          - 5173:5173
+      volumes:
+          - ./:/var/www/html
