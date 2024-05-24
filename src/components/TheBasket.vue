@@ -2,6 +2,7 @@
 import BasketEmpty from '@components/Basket/BasketEmpty.vue'
 import { useBasketStore } from '@/stores/basket'
 import { storeToRefs } from 'pinia'
+import BasketNotEmpty from './Basket/BasketNotEmpty.vue'
 
 const { basketProducts } = storeToRefs(useBasketStore())
 </script>
@@ -9,9 +10,7 @@ const { basketProducts } = storeToRefs(useBasketStore())
 <template>
   <div class="basket">
     <h2>Корзина</h2>
-    <div v-if="basketProducts.length > 0">
-      {{ basketProducts }}
-    </div>
+    <BasketNotEmpty :items="basketProducts" v-if="basketProducts.length > 0" />
     <BasketEmpty v-else />
   </div>
 </template>
