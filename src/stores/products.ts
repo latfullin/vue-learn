@@ -91,8 +91,8 @@ export const useProductStore = defineStore({
   getters: {
     products: state => {
       state.loader = true
+      
       try {
-
         if (state.search.trim().length === 0) {
           return state.items
         } else {

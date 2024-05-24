@@ -1,17 +1,41 @@
 <script setup lang="ts">
 import BasketEmpty from '@components/Basket/BasketEmpty.vue'
+import BasketOrder from '@components/Basket/BasketOrder.vue'
 import { useBasketStore } from '@/stores/basket'
 import { storeToRefs } from 'pinia'
 import BasketNotEmpty from './Basket/BasketNotEmpty.vue'
+import { onMounted } from 'vue'
+import { useStateStore } from '@/stores/state'
 
-const { basketProducts } = storeToRefs(useBasketStore())
+const { showOrderPage } = storeToRefs(useStateStore())
+
+const storeBasket = useBasketStore()
+const { basketProducts } = storeToRefs(storeBasket)
+
+onMounted(() => {
+  storeBasket.initBasket()
+})
 </script>
 
 <template>
   <div class="basket">
     <h2>Корзина</h2>
-    <BasketNotEmpty :items="basketProducts" v-if="basketProducts.length > 0" />
-    <BasketEmpty v-else />
+    <template v-if="showOrderPage">
+      <BasketOrder
+        title="Заказ оформлен!"
+        subtitle="Ваш заказ #18 скоро будет передан курьерской доставке"
+        image="sa"
+      />
+    </template>
+    <template v-else>
+      <BasketNotEmpty :items="basketProducts" v-if="basketProducts.length > 0" />
+      <BasketEmpty
+        v-else
+        title="Корзина пустая"
+        image="./assets/img/empty.png"
+        subtitle="Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+      />
+    </template>
   </div>
 </template>
 

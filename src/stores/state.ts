@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 
 export const useStateStore = defineStore('state', () => {
   const openSidebar: Ref<boolean> = ref(false)
-
-
-  return { openSidebar }
+  const showOrderPage: Ref<boolean> = ref(false)
+  
+  return { openSidebar, showOrderPage }
 })
