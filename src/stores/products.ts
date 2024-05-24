@@ -105,7 +105,7 @@ export const useProductStore = defineStore({
   },
 
   actions: {
-    getItems(items: Array<Object>): Array<Object>{
+    getItems(items: Array<Object>): Array<Product>{
       if (items.length !== 0) { 
         return this.items.filter((item) => items.find(e => item.id === e.id))
       }

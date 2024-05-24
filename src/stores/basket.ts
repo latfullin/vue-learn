@@ -8,6 +8,7 @@ interface IBasket {
 }
 
 
+
 export const useBasketStore = defineStore({
   id: 'basket',
   // const basket: Ref<Array<IBasket>> = ref([])
@@ -17,7 +18,7 @@ export const useBasketStore = defineStore({
   
   getters: {
     amount: (state) => state.basket.reduce((acc, e) => acc + e.price, 0),
-    basketProducts: state => {
+    basketProducts: (state)  =>  {
       const products = useProductStore();
       
       return products.getItems(state.basket)
