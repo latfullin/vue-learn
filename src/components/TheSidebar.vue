@@ -3,8 +3,11 @@ import { watch } from 'vue'
 import { useStateStore } from '@/stores/state'
 import { storeToRefs } from 'pinia'
 import TheBackdrop from '@components/TheBackdrop.vue'
+import { useRouter } from 'vue-router'
 import { ref, type Ref } from 'vue'
 import TheBasket from './TheBasket.vue'
+
+const router = useRouter()
 
 const { openSidebar } = storeToRefs(useStateStore())
 
@@ -16,6 +19,7 @@ const open = (event: Event): void => {
 
 const close = (event: Event): void => {
   if (event.target == backdrop.value.backdrop) {
+    router.push('/')
     openSidebar.value = false
     window.removeEventListener('click', open)
   }

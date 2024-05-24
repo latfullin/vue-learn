@@ -4,8 +4,15 @@ import IconArrow from '@components/icons/IconArrow.vue'
 
 import { useStateStore } from '@/stores/state'
 import { storeToRefs } from 'pinia'
+import { useRouter } from 'vue-router'
 
+const route = useRouter()
 const { openSidebar } = storeToRefs(useStateStore())
+
+const close = () => {
+  openSidebar.value = false
+  route.push('/')
+}
 </script>
 
 <template>
@@ -16,7 +23,7 @@ const { openSidebar } = storeToRefs(useStateStore())
       <div class="basket__empty-subtitle">
         Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
       </div>
-      <Button @click="openSidebar = false" value="Вернуться назад">
+      <Button @click="close" value="Вернуться назад">
         <template v-slot:before>
           <IconArrow class="arrow" />
         </template>
