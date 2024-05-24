@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import BasketItems from '@components/Basket/BasketItems.vue'
-import BasketOrder from '@components/Basket/BasketOrder.vue'
+import BasketPlacingOrder from '@components/Basket/BasketPlacingOrder.vue'
 
 defineProps<{
   items: Array<Object>
@@ -9,7 +9,7 @@ defineProps<{
 <template>
   <div class="basket__not-empty">
     <BasketItems :items="items" />
-    <BasketOrder />
+    <BasketPlacingOrder />
   </div>
 </template>
 <style scoped lang="scss">
