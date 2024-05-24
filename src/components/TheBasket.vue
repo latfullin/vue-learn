@@ -17,6 +17,8 @@ const { basketProducts } = storeToRefs(useBasketStore())
 
 <style scoped lang="scss">
 .basket {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 30px;
 }

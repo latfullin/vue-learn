@@ -1,5 +1,23 @@
+<script setup lang="ts">
+defineProps<{
+  position: string
+}>()
+</script>
+
 <template>
-  <svg width="16" height="14" viewBox="0 0 16 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    :class="[
+      'arrow',
+      position == 'left' || position === undefined ? 'arrow-left' : '',
+      position == 'right' ? 'arrow-right' : ''
+    ]"
+    width="16"
+    height="14"
+    viewBox="0 0 16 14"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    :test="position"
+  >
     <path
       d="M14.7144 7L1.00007 7"
       stroke="white"
@@ -17,4 +35,19 @@
   </svg>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+.arrow {
+  position: absolute;
+  top: 50%;
+
+  &-right {
+    transform: translateY(-50%) rotate(180deg);
+    right: 30px;
+  }
+
+  &-left {
+    left: 30px;
+    transform: translateY(-50%);
+  }
+}
+</style>

@@ -25,7 +25,7 @@ const close = () => {
       </div>
       <Button @click="close" value="Вернуться назад">
         <template v-slot:before>
-          <IconArrow class="arrow" />
+          <IconArrow />
         </template>
       </Button>
     </div>
@@ -33,13 +33,6 @@ const close = () => {
 </template>
 
 <style lang="scss">
-.arrow {
-  position: absolute;
-  left: 30px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 .basket {
   &__empty-images {
     max-width: 120px;
