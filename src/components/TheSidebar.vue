@@ -43,6 +43,7 @@ watch(openSidebar, open)
   right: -100%;
   height: 100%;
   width: 385px;
+  max-height: 100vh;
   opacity: 0;
   transition:
     opacity 0.3s,

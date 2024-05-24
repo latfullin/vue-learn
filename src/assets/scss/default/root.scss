@@ -1,2 +1,18 @@
 :root {
+  --width-card: 200px;
+  @include lg {
+    --width-card: 270px;
+  }
+
+  @include xxl {
+    --width-card: 325px;
+  }
+
+  --default-row-gap: 30px;
+  --default-column-gap: 20px;
+
+  @include xxl {
+    --default-row-gap: 52px;
+    --default-column-gap: 40px;
+  }
 }

@@ -28,9 +28,9 @@ setTimeout(() => {
 .product {
   &__items {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(var(--width-card), 1fr));
     position: relative;
-    gap: 52px 40px;
+    gap: var(--default-row-gap) var(--default-column-gap);
     padding-top: 40px;
     padding-bottom: 20px;
   }

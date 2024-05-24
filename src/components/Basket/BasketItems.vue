@@ -24,6 +24,18 @@ defineProps<{
     flex-direction: column;
     padding-top: 30px;
     row-gap: 20px;
+    flex: 1 0 60%;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background-color: #dfdfdf;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: #acacac;
+    }
   }
 }
 </style>

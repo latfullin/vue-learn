@@ -20,6 +20,8 @@ defineProps<{
     flex: 1 0 auto;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
+    row-gap: 30px;
   }
 }
 </style>
