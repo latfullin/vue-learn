@@ -1,86 +1,66 @@
-<script lang="ts" setup>
+<script setup lang="ts">
 import Button from '@components/UI/Button.vue'
 import IconArrow from '@components/icons/IconArrow.vue'
 
-import { useRouter } from 'vue-router'
-
-import { ref, computed } from 'vue'
-
 import { useStateStore } from '@/stores/state'
-import { useBasketStore } from '@/stores/basket'
 import { storeToRefs } from 'pinia'
 
-const { openSidebar } = storeToRefs(useStateStore())
+const { showOrderPage, openSidebar } = storeToRefs(useStateStore())
 
-const { amount } = storeToRefs(useBasketStore())
+defineProps<{
+  title: string
+  subtitle: string
+}>()
 
-const orderEl = ref(Node)
-
-const percent = computed({
-  get() {
-    return amount <= 0 ? 0 : Number(amount.value * 0.05).toFixed(2)
-  }
-})
-
-const router = useRouter()
-
-const order = () => {
-  openSidebar.value = false
-  router.push('/order')
+const close = () => {
+  // openSidebar.value = false
+  // showOrderPage.value = false
 }
-
-defineExpose({
-  orderEl
-})
 </script>
-<template>
-  <div class="basket__order" ref="orderEl">
-    <div class="basket__amount">
-      <div class="basket__amount-title">Итого</div>
-      <div class="basket__line"></div>
-      <div class="basket__total">{{ amount }}</div>
-    </div>
 
-    <div class="basket__amount">
-      <div class="basket__amount-title">Налог 5%</div>
-      <div class="basket__line"></div>
-      <div class="basket__total">{{ percent }}</div>
+<template>
+  <div class="basket__empty">
+    <div class="basket__empty-image">
+      <img class="basket__empty-images" src="@img/order.png" alt="" />
+      <h2 class="basket__empty-title">{{ title }}</h2>
+      <div class="basket__empty-subtitle" style="">
+        {{ subtitle }}
+      </div>
+      <Button @click="close" value="Вернуться назад">
+        <template v-slot:before>
+          <IconArrow />
+        </template>
+      </Button>
     </div>
-    <Button @click="order" value="Оформить заказ">
-      <template v-slot:after>
-        <IconArrow position="right" />
-      </template>
-    </Button>
   </div>
 </template>
 
 <style lang="scss">
 .basket {
-  &__order {
+  &__empty-images {
+    max-width: 120px;
+  }
+
+  &__empty-title {
+    font-size: 22px;
+    line-height: 28px;
+    font-weight: 600;
+    margin: 20px 0 0;
+  }
+  &__empty-subtitle {
+    font-weight: 400;
+    font-size: 16px;
+    opacity: 0.4;
+    padding: 10px 0 40px;
+  }
+
+  &__empty {
     display: flex;
-    flex-direction: column;
-    row-gap: 22px;
-    flex: 0 1 auto;
-    padding-bottom: 30px;
-  }
-
-  &__amount {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__amount-title {
-    flex: 1 0 auto;
-  }
-
-  &__total {
-    flex: 1 0 auto;
-  }
-
-  &__line {
-    border-bottom: 1px dashed #dfdfdf;
-    width: 100%;
-    margin-bottom: 3px;
+    align-items: center;
+    padding: 0 30px;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
   }
 }
 </style>

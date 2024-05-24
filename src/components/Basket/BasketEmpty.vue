@@ -9,6 +9,12 @@ import { useRouter } from 'vue-router'
 const route = useRouter()
 const { openSidebar } = storeToRefs(useStateStore())
 
+defineProps<{
+  title: string
+  subtitle: string
+  image: string
+}>()
+
 const close = () => {
   openSidebar.value = false
   route.push('/')
@@ -19,9 +25,9 @@ const close = () => {
   <div class="basket__empty">
     <div class="basket__empty-image">
       <img class="basket__empty-images" src="@img/empty.png" alt="" />
-      <h2 class="basket__empty-title">Корзина пустая</h2>
+      <h2 class="basket__empty-title">{{ title }}</h2>
       <div class="basket__empty-subtitle">
-        Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.
+        {{ subtitle }}
       </div>
       <Button @click="close" value="Вернуться назад">
         <template v-slot:before>
