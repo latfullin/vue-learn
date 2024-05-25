@@ -45,7 +45,7 @@ onMounted(() => {
         @click="() => toggleFavorite(id)"
       />
       <div class="product__card-head">
-        <img src="@img/product-1.png" alt="" />
+        <img class="product__card-image" src="@img/product-1.png" alt="" />
       </div>
       <div class="product__card-body">Мужские Кроссовки Nike Blazer Mid Suede</div>
       <div class="product__card-footer">
@@ -87,6 +87,9 @@ onMounted(() => {
     width: 15px;
     height: 15px;
     transform: translate(-50%, -50%);
+    &::selection {
+      background-color: transparent;
+    }
   }
 }
 
@@ -102,6 +105,12 @@ onMounted(() => {
 
   &__card:hover .product__favorite {
     opacity: 1;
+  }
+
+  &__card-image {
+    &::selection {
+      background-color: transparent;
+    }
   }
 
   &__card-wrapper {
