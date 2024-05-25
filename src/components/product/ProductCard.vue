@@ -3,9 +3,12 @@ import { useBasketStore } from '@stores/basket'
 import { ref, watch } from 'vue'
 import IconFavorite from '../icons/IconFavorite.vue'
 import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 
-const { addProduct, basket, removeProduct } = useBasketStore()
+const { addProduct, removeProduct, checkAddInBasket, toggleFavorite, checkAddInFavorite } =
+  useBasketStore()
 
+const { basket, favorites } = storeToRefs(useBasketStore())
 const props = defineProps<{
   id: number
   title: string
@@ -14,21 +17,22 @@ const props = defineProps<{
 }>()
 
 const productInBasket = ref(true)
+const productInFavorite = ref(true)
 
-interface IBasket {
-  id: number
+const checkBasket = (): void => {
+  productInBasket.value = checkAddInBasket(props.id)
 }
 
-const checkAddInBasket = (): void => {
-  if (basket.find((element: IBasket) => element.id === props.id)) {
-    productInBasket.value = false
-  } else {
-    productInBasket.value = true
-  }
+const checkFavorite = (): void => {
+  productInFavorite.value = checkAddInFavorite(props.id)
 }
 
-watch(basket, checkAddInBasket)
-onMounted(() => checkAddInBasket())
+watch(basket.value, checkBasket)
+watch(favorites.value, checkFavorite)
+
+onMounted(() => {
+  checkBasket(), checkFavorite()
+})
 </script>
 
 <template>
@@ -36,8 +40,9 @@ onMounted(() => checkAddInBasket())
     <div class="product__card-wrapper">
       <IconFavorite
         class="product__favorite"
-        :background="!productInBasket ? '#FEF0F0' : 'transperent'"
-        :heart="!productInBasket ? '#FF8585' : 'transperent'"
+        :background="!productInFavorite ? '#FEF0F0' : 'transperent'"
+        :heart="!productInFavorite ? '#FF8585' : 'transperent'"
+        @click="() => toggleFavorite(id)"
       />
       <div class="product__card-head">
         <img src="@img/product-1.png" alt="" />
@@ -52,7 +57,7 @@ onMounted(() => checkAddInBasket())
           <button
             class="product__card-increment"
             v-if="productInBasket"
-            @click="() => addProduct(id, price)"
+            @click="() => addProduct(id)"
           >
             <span> + </span>
           </button>
