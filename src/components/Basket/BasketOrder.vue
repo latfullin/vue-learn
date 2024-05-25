@@ -13,8 +13,8 @@ defineProps<{
 }>()
 
 const close = () => {
-  // openSidebar.value = false
-  // showOrderPage.value = false
+  openSidebar.value = false
+  showOrderPage.value = false
 }
 </script>
 
