@@ -13,8 +13,13 @@ const router = createRouter({
     {
       path: '/favorite',
       name: 'favorite',
-      component: HomeView
-    }
+      component: FavoriteView
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: FavoriteView
+    },
   ]
 })
 

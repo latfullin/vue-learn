@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref, type Ref } from 'vue'
 import IconSearch from '@components/icons/IconSearch.vue'
 import ProductCards from '@components/product/ProductCards.vue'
 import Input from '@components/UI/Input.vue'
 import { useProductStore } from '@/stores/products'
 import { storeToRefs } from 'pinia'
 
-const { search } = storeToRefs(useProductStore())
+const { search, products } = storeToRefs(useProductStore())
 </script>
 
 <template>
@@ -19,7 +18,7 @@ const { search } = storeToRefs(useProductStore())
         </template>
       </Input>
     </div>
-    <ProductCards />
+    <ProductCards :products="products" />
   </div>
 </template>
 

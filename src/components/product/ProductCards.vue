@@ -4,7 +4,11 @@ import ProductSkelet from '@components/product/ProductSkelet.vue'
 import { useProductStore } from '@/stores/products'
 import { storeToRefs } from 'pinia'
 
-const { products, loader } = storeToRefs(useProductStore())
+const { loader } = storeToRefs(useProductStore())
+
+defineProps<{
+  products: Array<T>
+}>()
 
 setTimeout(() => {
   loader.value = false
@@ -18,7 +22,7 @@ setTimeout(() => {
       :image="item.image"
       :price="item.price"
       :id="item.id"
-      v-if="!loader"
+      v-if="!loader && products"
     />
     <ProductSkelet v-for="item in 12" v-else />
   </div>
