@@ -6,7 +6,7 @@ import HeaderNavigation from '@components/Header/HeaderNavigation.vue'
   <header class="navigation">
     <div class="navigation__left">
       <div class="navigation__logo">
-        <router-link to="/">
+        <router-link :to="{ name: 'home' }">
           <img src="@img/logo.png" alt="" loading="lazy" />
         </router-link>
       </div>
